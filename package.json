@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "name": "alola",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/balazs4/alola.git"
+  },
+  "author": "balazs4 <balazs4web@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/balazs4/alola/issues"
+  },
+  "homepage": "https://gitlab.com/balazs4/alola#readme",
+  "version": "0.0.0-semver",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "onchange": "^6.1.0",
+    "tap-difflet": "^0.7.2",
+    "tap-set-exit": "^1.1.1",
+    "zora": "^3.1.8"
+  },
+  "scripts": {
+    "test": "node -e \"`find . -not -path \"./node_modules/*\" -name \"*.test.js\" | xargs -I {} echo \"require('{}');\";`\"",
+    "dev": "onchange **/*.js -i -k -- npm run test"
+  }
+}
