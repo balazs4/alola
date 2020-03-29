@@ -10,7 +10,7 @@
     "url": "https://gitlab.com/balazs4/alola/issues"
   },
   "homepage": "https://gitlab.com/balazs4/alola#readme",
-  "version": "0.0.0-semver",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "devDependencies": {
