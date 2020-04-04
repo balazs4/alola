@@ -16,6 +16,7 @@
     "curl",
     "json",
     "cli",
+    "terminal",
     "convert",
     "pipe"
   ],

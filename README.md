@@ -82,6 +82,10 @@ curl -isL https://swapi.co/api/people/1/ | npx alola
 }
 ```
 
+## Related projects
+
+- [fx](https://github.com/antonmedv/fx)
+
 ## Author
 
 balazs4 - <https://twitter.com/balazs4>
