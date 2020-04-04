@@ -2,14 +2,14 @@
   "name": "alola",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/balazs4/alola.git"
+    "url": "git+ssh://git@github.com/balazs4/alola.git"
   },
   "author": "balazs4 <balazs4web@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/balazs4/alola/issues"
+    "url": "https://github.com/balazs4/alola/issues"
   },
-  "homepage": "https://gitlab.com/balazs4/alola#readme",
+  "homepage": "https://github.com/balazs4/alola#readme",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
