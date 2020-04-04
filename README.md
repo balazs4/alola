@@ -84,4 +84,4 @@ curl -isL https://swapi.co/api/people/1/ | npx alola
 
 ## Author
 
-balazs4 - <https://twitter.com/balaz4>
+balazs4 - <https://twitter.com/balazs4>
