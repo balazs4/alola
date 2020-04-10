@@ -1,12 +1,4 @@
-name: master
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+on: push
 
 jobs:
   test:
@@ -15,13 +7,14 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: '12.x'
       - run: npm ci
       - run: npx c8 --all npm run test | npx tap-set-exit
         env:
           CI: true
 
   release:
+    if: github.ref == 'master'
     needs: test
     runs-on: ubuntu-latest
     steps:
