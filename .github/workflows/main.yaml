@@ -14,7 +14,7 @@ jobs:
           CI: true
 
   release:
-    if: github.ref == 'master'
+    if: github.ref == 'refs/heads/master'
     needs: test
     runs-on: ubuntu-latest
     steps:
