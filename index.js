@@ -1,9 +1,9 @@
 #! /usr/bin/env node
 
-const read = require("./read");
-const split = require("./split");
-const parse = require("./parse");
-const finalize = require("./finalize");
+const read = require('./read');
+const split = require('./split');
+const parse = require('./parse');
+const finalize = require('./finalize');
 
 read()
   .then((lines) => split(lines))

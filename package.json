@@ -20,26 +20,27 @@
     "convert",
     "pipe"
   ],
-  "main": "index.js",
   "bin": {
-    "alola": "./alola.js"
+    "alola": "./index.js"
   },
   "devDependencies": {
-    "husky": "^4.2.3",
+    "husky": "^4.2.5",
     "onchange": "^6.1.0",
-    "prettier": "^2.0.2",
+    "prettier": "^2.0.4",
     "pretty-quick": "^2.0.1",
-    "tap-difflet": "^0.7.2",
-    "tap-set-exit": "^1.1.1",
+    "tap-diff": "^0.1.1",
     "zora": "^3.1.8"
   },
   "scripts": {
-    "test": "node -e \"`find . -not -path \"./node_modules/*\" -name \"*.test.js\" | xargs -I {} echo \"require('{}');\";`\"",
+    "test": "node -e \"`find . -not -path \"./node_modules/*\" -name \"*.test.js\" | xargs -I {} echo \"require('{}');\";`\" | tap-diff",
     "dev": "onchange **/*.js -i -k -- npm run test"
   },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
