@@ -9,7 +9,7 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm ci
-      - run: npx c8 --all npm run test | npx tap-set-exit
+      - run: npx c8 --all npm run test ${{ github.ref }}
         env:
           CI: true
 
