@@ -1,5 +1,5 @@
-const [, , ref = '...'] = process.argv;
-const test = require('baretest')(`${Date.now()} alola #${ref}`);
+const [, , ref = '(dev)'] = process.argv;
+const test = require('baretest')(`alola #${ref}`);
 
 require('./finalize.test')(test);
 require('./parse.test')(test);
