@@ -1,6 +1,7 @@
 # alola
 
-![master](https://github.com/balazs4/alola/workflows/master/badge.svg)
+[![.github/workflows/main.yaml](https://github.com/balazs4/alola/workflows/.github/workflows/main.yaml/badge.svg)](https://github.com/balazs4/alola/actions?query=workflow%3A.github%2Fworkflows%2Fmain.yaml+branch%3Amaster)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/balazs4/alola.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/balazs4/alola/context:javascript)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![alola](https://img.shields.io/npm/v/alola?logo=node.js)](https://www.npmjs.com/package/alola)
