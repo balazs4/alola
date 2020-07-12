@@ -106,6 +106,38 @@ curl -isL https://pokeapi.co/api/v2/region/alola | npx alola
 }
 ```
 
+## Advanced usage
+
+> :warning: work-in-progress :warning:
+
+```bash
+curl -isL https://your-deployment.stage
+  | alola
+  | fx 'status(200)' 'header("x-deployment-hash", "abced1234")' 'body("customerId", /\S+/)' 'res => assert.deepEqual(res.body, { customerId: 1234, foo: 42, bar: "yay" }, "This is my custom assert")'
+
+#### output
+
+# ✅ status 200
+# ✅ header "x-deployment-hash: abced1234"
+# ❌ body "customerId" does not match to '\S+', actualValue: '1234'
+# ✅ This my custom assertion
+#
+# 3 of 4 checks passed (1 failed)
+
+```
+
+### :thinking: Open points
+
+- [TAP](https://github.com/sindresorhus/awesome-tap) output for reporters?
+- bail out as default or make it configurable
+
+```javascript
+setup({ bail: true });
+```
+
+- support for `FX_RC=/my/testsuite/path/testcases.js fx ...`
+  - PR for [fx](https://github.com/antonmedv/fx) or fork
+
 ## Related projects
 
 - [fx](https://github.com/antonmedv/fx)
@@ -113,3 +145,7 @@ curl -isL https://pokeapi.co/api/v2/region/alola | npx alola
 ## Author
 
 balazs4 - <https://twitter.com/balazs4>
+
+```
+
+```
