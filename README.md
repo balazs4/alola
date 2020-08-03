@@ -147,6 +147,45 @@ setup({ bail: true });
 
 balazs4 - <https://twitter.com/balazs4>
 
-```
+```javascript
+// vim: ft=javascript
 
+global.assert = require('assert').strict;
+
+const tests = [];
+
+const track = (testcase) => (json) => {
+  try {
+    testcase(json);
+    tests.push({ testcase });
+  } catch (err) {
+    tests.push({ testcase, err });
+  } finally {
+    return json;
+  }
+};
+
+global.status = (expected) =>
+  track((json) => assert.equal(parseInt(json.status), parseInt(expected)));
+
+global.headers = (name, expected) =>
+  track((json) => assert.equal(json.headers[name], expected));
+
+process.on('beforeExit', (code) => {
+  const failed = tests.filter((x) => x.err).length;
+  const passed = tests.filter((x) => !x.err).length;
+  const total = tests.length;
+  const summary = tests
+    .map((t) => {
+      if (t.err) {
+        return `❌ ${t.testcase} 
+
+${t.err.message}`;
+      }
+      return `✅ ${t.testcase}`;
+    })
+    .join('\n');
+  console.log(summary);
+  console.log(`${passed} passed of ${total} tests`);
+});
 ```
