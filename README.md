@@ -111,6 +111,13 @@ curl -isL https://pokeapi.co/api/v2/region/alola | npx alola
 
 > :warning: work-in-progress :warning:
 
+```javascript
+// fx.rc
+// vim: ft=javascript
+
+require('/home/balazs4/Src/alola/fx')(global);
+```
+
 ```bash
 curl -isL https://your-deployment.stage
   | alola
@@ -146,63 +153,3 @@ setup({ bail: true });
 ## Author
 
 balazs4 - <https://twitter.com/balazs4>
-
-```javascript
-// vim: ft=javascript
-
-const assert = require('assert').strict;
-
-global.alola = (json) => {
-  const suite = [];
-  process.on('beforeExit', (code) => {
-    const results = suite.map(({ name, test }) => {
-      try {
-        test(json);
-        const log = () => console.log(`✅ ${name}`);
-        return { name, log };
-      } catch (err) {
-        const log = () => {
-          console.group(`❌ ${name}`);
-          console.log(err.message);
-          console.groupEnd();
-        };
-        return { name, log, err };
-      }
-    });
-    const passed = results.filter((x) => x.err === undefined).length;
-    const failed = results.filter((x) => x.err !== undefined).length;
-    const total = results.length;
-    if (failed === 0) {
-      console.log(JSON.stringify(json));
-      return;
-    }
-
-    results.forEach((res) => {
-      res.log();
-    });
-    console.log(' ');
-    console.log(`${passed} passed of ${total} results`);
-    process.exit(failed);
-  });
-
-  global.status = (expected) => (_) => {
-    const name = `status code should be '${expected}'`;
-    suite.push({
-      name,
-      test: (json) => assert.equal(parseInt(json.status), parseInt(expected)),
-    });
-    return '';
-  };
-
-  global.header = (key, expected) => (_) => {
-    const name = `header[${key}] should be '${expected}'`;
-    suite.push({
-      name,
-      test: (json) => assert.equal(json.headers[key], expected),
-    });
-    return '';
-  };
-
-  return json;
-};
-```
