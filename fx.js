@@ -1,25 +1,11 @@
 const assert = require('assert').strict;
-const suite = [];
+const results = [];
 
 module.exports = (global) => {
   global.alola = (json) => {
-    process.on('exit', (code) => {
-      const results = suite.map(({ name, test }) => {
-        try {
-          test(json);
-          const log = () => console.log(`✅ ${name}`);
-          return { name, log };
-        } catch (err) {
-          const log = () => {
-            console.group(`❌ ${name}`);
-            console.log(err.message);
-            console.groupEnd();
-          };
-          return { name, log, err };
-        }
-      });
-      const passed = results.filter((x) => x.err === undefined).length;
+    process.on('beforeExit', (code) => {
       const failed = results.filter((x) => x.err !== undefined).length;
+      const passed = results.filter((x) => x.err === undefined).length;
       const total = results.length;
       results.forEach((res) => {
         res.log();
@@ -32,19 +18,29 @@ module.exports = (global) => {
       return process.exit(failed);
     });
 
-    const check = (name, test) => {
-      suite.push({ name, test });
-      return (_) => '';
+    global.status = (expected) => (_) => {
+      const name = `status code should be '${expected}'`;
+      try {
+        assert.equal(parseInt(json.status), parseInt(expected));
+        const log = () => console.log(`✅ ${name}`);
+        results.push({ name, log });
+      } catch (err) {
+        const log = () => {
+          console.group(`❌ ${name}`);
+          console.log(err.message);
+          console.groupEnd();
+        };
+        results.push({ name, log, err });
+      } finally {
+        return '';
+      }
     };
 
-    global.status = (expected) =>
-      check(`status code should be '${expected}'`, (json) =>
-        assert.equal(parseInt(json.status), parseInt(expected))
-      );
-
-    global.header = (key, expected) =>
-      check(`header['${key}'] should be '${expected}'`, (json) =>
-        assert.equal(json.headers[key], expected)
-      );
+    return json;
   };
+
+  // global.header = (key, expected) =>
+  //   check(`header['${key}'] should be '${expected}'`, (json) =>
+  //     assert.equal(json.headers[key], expected)
+  //   );
 };
