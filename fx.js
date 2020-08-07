@@ -34,19 +34,24 @@ module.exports = (global) => {
     };
 
     global.status = (expected) =>
-      test(`status code should be '${expected}'`, (json) =>
+      test(`status code should be ${expected}`, (json) =>
         assert.equal(parseInt(json.status), parseInt(expected)));
 
     global.header = (key, expected) =>
-      test(`header['${key}'] should be '${expected}'`, (json) =>
+      test(`header['${key}'] should be ${JSON.stringify(expected)}`, (json) =>
         assert.equal(json.headers[key], expected));
 
     global.body = (key, expected) =>
-      test(`body['${key}'] should be '${expected}'`, (json) => {
-        const actual = json.body[key].valueOf
-          ? json.body[key].valueOf()
-          : json.body[key];
-        assert.equal(actual, expected);
+      test(`body.${key} should be ${JSON.stringify(expected)}`, (json) => {
+        const actual = key.split('.').reduce((o, k) => {
+          if (o && o[k]) return o[k];
+          return undefined;
+        }, json.body);
+
+        assert.equal(
+          actual && actual.valueOf ? actual.valueOf() : actual,
+          expected
+        );
       });
 
     return json;
