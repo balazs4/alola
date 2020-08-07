@@ -1,7 +1,8 @@
 const assert = require('assert').strict;
-const results = [];
 
 module.exports = (global) => {
+  const results = [];
+
   global.alola = (json) => {
     process.on('beforeExit', (code) => {
       const failed = results.filter((x) => x.err !== undefined).length;
@@ -12,16 +13,12 @@ module.exports = (global) => {
       });
       console.log(' ');
       console.log(`${passed} passed of ${total} results (${failed} failed)`);
-      if (failed === 0) {
-        return json;
-      }
-      return process.exit(failed);
+      process.exitCode = failed;
     });
 
-    global.status = (expected) => (_) => {
-      const name = `status code should be '${expected}'`;
+    const test = (name, assertion) => (_) => {
       try {
-        assert.equal(parseInt(json.status), parseInt(expected));
+        assertion(json);
         const log = () => console.log(`✅ ${name}`);
         results.push({ name, log });
       } catch (err) {
@@ -36,11 +33,22 @@ module.exports = (global) => {
       }
     };
 
+    global.status = (expected) =>
+      test(`status code should be '${expected}'`, (json) =>
+        assert.equal(parseInt(json.status), parseInt(expected)));
+
+    global.header = (key, expected) =>
+      test(`header['${key}'] should be '${expected}'`, (json) =>
+        assert.equal(json.headers[key], expected));
+
+    global.body = (key, expected) =>
+      test(`body['${key}'] should be '${expected}'`, (json) => {
+        const actual = json.body[key].valueOf
+          ? json.body[key].valueOf()
+          : json.body[key];
+        assert.equal(actual, expected);
+      });
+
     return json;
   };
-
-  // global.header = (key, expected) =>
-  //   check(`header['${key}'] should be '${expected}'`, (json) =>
-  //     assert.equal(json.headers[key], expected)
-  //   );
 };
