@@ -134,6 +134,10 @@ curl -isL https://your-deployment.stage
 
 ```
 
+```bash
+onchange $HOME/Src/alola/* -i -k -- fx $HOME/Src/alola/.tmp/res.json 'alola' 'status(200)' 'header("x-powered-by", "Express")' 'body("id", 42)' 'body("foo", "bar")' 'body("nested.foobar", 42)' 'body("nested", {"foobar": 42 })'
+```
+
 ### :thinking: Open points
 
 - [TAP](https://github.com/sindresorhus/awesome-tap) output for reporters?
