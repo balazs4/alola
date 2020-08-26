@@ -3,7 +3,7 @@ const assert = require('assert').strict;
 module.exports = (global) => {
   const results = [];
 
-  global.alola = (json) => {
+  global.alola = (options) => (json) => {
     process.on('beforeExit', (code) => {
       const failed = results.filter((x) => x.err !== undefined).length;
       const passed = results.filter((x) => x.err === undefined).length;

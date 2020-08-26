@@ -25,7 +25,7 @@ echo -e '
   }
 }
 ' | fx \
-  'alola' \
+  'alola()' \
   'status(200)' \
   'header("x-powered-by", "Express")' \
   'body("id", 42)' \
