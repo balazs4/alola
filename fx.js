@@ -12,7 +12,11 @@ module.exports = (global) => {
         res.log();
       });
       console.log(' ');
-      console.log(`${passed} passed of ${total} results (${failed} failed)`);
+      console.log(
+        `${
+          failed === 0 && passed > 0 ? '😎' : '😥'
+        } ${passed} of ${total} passed (${failed} failed)`
+      );
       process.exitCode = failed;
     });
 
@@ -39,19 +43,22 @@ module.exports = (global) => {
 
     global.header = (key, expected) =>
       test(`header['${key}'] should be ${JSON.stringify(expected)}`, (json) =>
-        assert.equal(json.headers[key], expected));
+        assert.deepEqual(json.headers[key], expected));
 
     global.body = (key, expected) =>
       test(`body.${key} should be ${JSON.stringify(expected)}`, (json) => {
-        const actual = key.split('.').reduce((o, k) => {
+        const lossless = key.split('.').reduce((o, k) => {
           if (o && o[k]) return o[k];
           return undefined;
         }, json.body);
 
-        assert.equal(
-          actual && actual.valueOf ? actual.valueOf() : actual,
-          expected
+        const actual = JSON.parse(
+          JSON.stringify(lossless, (key, value) => {
+            return value && value.valueOf ? value.valueOf() : value;
+          })
         );
+
+        assert.deepEqual(actual, expected);
       });
 
     return json;

@@ -5,9 +5,6 @@
 # npm i -g fx@latest
 # patch ~/.fxrc 
 
-
-echo "## End-to-End Test"
-
 echo -e '
 {
   "redirects": [],
