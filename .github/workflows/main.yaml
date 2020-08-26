@@ -13,9 +13,23 @@ jobs:
         env:
           CI: true
 
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - run: npm ci
+      - run: npm i -g fx
+      - run: echo "require('${GITHUB_WORKSPACE}/fx')(global)" >> ~/.fxrc
+      - run: npm run e2e
+        env:
+          CI: true
+
   release:
     if: github.ref == 'refs/heads/master'
-    needs: test
+    needs: [test, e2e]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
