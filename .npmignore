@@ -1,3 +1,4 @@
 .github
 *.test.js
 .releaserc*
+e2e.sh
