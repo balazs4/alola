@@ -33,7 +33,7 @@
   },
   "scripts": {
     "test": "node index.test.js",
-    "posttest": "./e2e.sh",
+    "e2e": "./e2e.sh",
     "dev": "onchange **/*.js -i -k -- npm run -s test"
   },
   "husky": {
