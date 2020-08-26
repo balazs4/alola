@@ -27,12 +27,11 @@ echo -e '
     }
   }
 }
-'\
-  | fx \
+' | fx \
   'alola' \
-  'status(200)'\
-  'header("x-powered-by", "Express")'\
-  'body("id", 42)'\
-  'body("foo", "bar")'\
-  'body("nested.foobar", 42)'\
-  'body("nested", {"foobar": 42 })'
+  'status(200)' \
+  'header("x-powered-by", "Express")' \
+  'body("id", 42)' \
+  'body("foo", "bar")' \
+  'body("nested.foo", "bar")' \
+  'body("nested", { "id": 42, "foo": "bar" })'  

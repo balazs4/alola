@@ -34,7 +34,7 @@
   "scripts": {
     "test": "node index.test.js",
     "e2e": "./e2e.sh",
-    "dev": "onchange **/*.js -i -k -- npm run -s test"
+    "dev": "onchange **/*.{js,sh} -i -k -- npm run -s"
   },
   "husky": {
     "hooks": {
