@@ -31,4 +31,5 @@ echo -e '
   'body("id", 42)' \
   'body("foo", "bar")' \
   'body("nested.foo", "bar")' \
-  'body("nested", { "id": 42, "foo": "bar" })'  
+  'body("nested", { "id": 42, "foo": "bar" })' \
+  'body("id", /^\d{2}$/)' 

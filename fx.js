@@ -3,6 +3,21 @@ const assert = require('assert').strict;
 module.exports = (global) => {
   const results = [];
 
+  const find = (key, json) => {
+    return key.split('.').reduce((o, k) => {
+      if (o && o[k]) return o[k];
+      return undefined;
+    }, json);
+  };
+
+  const delosslessify = (tmp) => {
+    return JSON.parse(
+      JSON.stringify(tmp, (_, value) => {
+        return value && value.valueOf ? value.valueOf() : value;
+      })
+    );
+  };
+
   global.alola = (options) => (json) => {
     process.on('beforeExit', (code) => {
       const failed = results.filter((x) => x.err !== undefined).length;
@@ -37,29 +52,35 @@ module.exports = (global) => {
       }
     };
 
-    global.status = (expected) =>
-      test(`status code should be ${expected}`, (json) =>
+    global.status = (expected) => {
+      return test(`status code should be ${expected}`, (json) =>
         assert.equal(parseInt(json.status), parseInt(expected)));
+    };
 
-    global.header = (key, expected) =>
-      test(`header['${key}'] should be ${JSON.stringify(expected)}`, (json) =>
-        assert.deepEqual(json.headers[key], expected));
+    global.header = (key, expected) => {
+      return test(`header['${key}'] should be ${JSON.stringify(
+        expected
+      )}`, (json) => assert.deepEqual(json.headers[key], expected));
+    };
 
-    global.body = (key, expected) =>
-      test(`body.${key} should be ${JSON.stringify(expected)}`, (json) => {
-        const lossless = key.split('.').reduce((o, k) => {
-          if (o && o[k]) return o[k];
-          return undefined;
-        }, json.body);
-
-        const actual = JSON.parse(
-          JSON.stringify(lossless, (key, value) => {
-            return value && value.valueOf ? value.valueOf() : value;
-          })
-        );
-
-        assert.deepEqual(actual, expected);
+    global.body = (key, expected) => {
+      if (typeof expected.test === typeof Function) {
+        return test(`body.${key} should match the regex ${expected.toString()}`, (json) => {
+          const actual = delosslessify(find(key, json.body));
+          return assert.equal(
+            expected.test(actual),
+            true,
+            `${actual} does not match the regular expression ${expected.toString()}`
+          );
+        });
+      }
+      return test(`body.${key} should be ${JSON.stringify(
+        expected
+      )}`, (json) => {
+        const actual = delosslessify(find(key, json.body));
+        return assert.deepEqual(actual, expected);
       });
+    };
 
     return json;
   };
