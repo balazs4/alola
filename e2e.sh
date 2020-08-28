@@ -27,7 +27,7 @@ echo -e '
 ' | fx \
   'alola()' \
   'match("status", 200)' \
-  'match("status", status("2xx"))' \
+  'match("status", /^2\d{2}$/)' \
   'match("headers.x-powered-by", "Express")' \
   'match("body.id", 42)' \
   'match("body.foo", "bar")' \

@@ -23,9 +23,7 @@ module.exports = (global) => {
       const failed = results.filter((x) => x.err !== undefined).length;
       const passed = results.filter((x) => x.err === undefined).length;
       const total = results.length;
-      results.forEach((res) => {
-        res.log();
-      });
+      results.forEach((res) => res.log());
       console.log(' ');
       console.log(
         `${
@@ -54,9 +52,7 @@ module.exports = (global) => {
 
     global.match = (key, expected) => {
       if (typeof expected.test === typeof Function) {
-        return test(`${key} should ${
-          expected.verb || 'match the regular expression'
-        } ${expected.toString()}`, (json) => {
+        return test(`${key} should match the regular expression ${expected.toString()}`, (json) => {
           const actual = delosslessify(find(key, json));
           return assert.deepEqual(
             expected.test(actual),
@@ -69,16 +65,6 @@ module.exports = (global) => {
         const actual = delosslessify(find(key, json));
         return assert.deepEqual(actual, expected);
       });
-    };
-
-    global.status = (input) => {
-      if ('2xx' === input)
-        return {
-          test: (_) => /^2\d\d/.test(_),
-          toString: () => input,
-          verb: 'be like',
-        };
-      return input;
     };
 
     return json;
