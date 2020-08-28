@@ -24,13 +24,15 @@ echo -e '
     }
   }
 }
-' | fx \
-  'alola()' \
-  'match("status", 200)' \
-  'match("status", /^2\d{2}$/)' \
-  'match("headers.x-powered-by", "Express")' \
-  'match("body.id", 42)' \
-  'match("body.foo", "bar")' \
-  'match("body.nested.foo", "bar")' \
-  'match("body.nested", { "id": 42, "foo": "bar" })' \
-  'match("body.id", /^\d{2}$/)' 
+' | fx 'alola()' \
+  'expect("status", 200)' \
+  'expect("status", /^2\d{2}$/)' \
+  'unexpect("status", 404)' \
+  'unexpect("status", /^4\d{2}$/)' \
+  'expect("headers.x-powered-by", "Express")' \
+  'expect("body.id", 42)' \
+  'expect("body.id", /^\d{2}$/)' \
+  'expect("body.foo", "bar")' \
+  'expect("body.nested.foo", "bar")' \
+  'expect("body.nested", { "id": 42, "foo": "bar" })' \
+  'custom("I do it better", (json, assert) => assert.ok(true))'

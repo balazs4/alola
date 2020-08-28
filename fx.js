@@ -1,6 +1,5 @@
-const assert = require('assert').strict;
-
 module.exports = (global) => {
+  const assert = require('assert').strict;
   const results = [];
 
   const find = (key, json) => {
@@ -35,7 +34,7 @@ module.exports = (global) => {
 
     const test = (name, assertion) => (_) => {
       try {
-        assertion(json);
+        assertion(json, assert);
         const log = () => console.log(`✅ ${name}`);
         results.push({ name, log });
       } catch (err) {
@@ -50,21 +49,46 @@ module.exports = (global) => {
       }
     };
 
-    global.match = (key, expected) => {
+    global.expect = (key, expected) => {
       if (typeof expected.test === typeof Function) {
-        return test(`${key} should match the regular expression ${expected.toString()}`, (json) => {
+        return test(`${key} should match the regular expression ${expected.toString()}`, (json, assert) => {
           const actual = delosslessify(find(key, json));
-          return assert.deepEqual(
+          return assert.deepStrictEqual(
             expected.test(actual),
             true,
             `${actual} does not match the regular expression ${expected.toString()}`
           );
         });
       }
-      return test(`${key} should be ${JSON.stringify(expected)}`, (json) => {
+      return test(`${key} should be ${JSON.stringify(
+        expected
+      )}`, (json, assert) => {
         const actual = delosslessify(find(key, json));
-        return assert.deepEqual(actual, expected);
+        return assert.deepStrictEqual(actual, expected);
       });
+    };
+
+    global.unexpect = (key, expected) => {
+      if (typeof expected.test === typeof Function) {
+        return test(`${key} should not match the regular expression ${expected.toString()}`, (json, assert) => {
+          const actual = delosslessify(find(key, json));
+          return assert.notDeepStrictEqual(
+            expected.test(actual),
+            true,
+            `${actual} does match the regular expression ${expected.toString()}`
+          );
+        });
+      }
+      return test(`${key} should not be ${JSON.stringify(
+        expected
+      )}`, (json, assert) => {
+        const actual = delosslessify(find(key, json));
+        return assert.notDeepStrictEqual(actual, expected);
+      });
+    };
+
+    global.custom = (name, assertion) => {
+      return test(name, assertion);
     };
 
     return json;
