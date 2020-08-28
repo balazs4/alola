@@ -26,10 +26,11 @@ echo -e '
 }
 ' | fx \
   'alola()' \
-  'status(200)' \
-  'header("x-powered-by", "Express")' \
-  'body("id", 42)' \
-  'body("foo", "bar")' \
-  'body("nested.foo", "bar")' \
-  'body("nested", { "id": 42, "foo": "bar" })' \
-  'body("id", /^\d{2}$/)' 
+  'match("status", 200)' \
+  'match("status", status("2xx"))' \
+  'match("headers.x-powered-by", "Express")' \
+  'match("body.id", 42)' \
+  'match("body.foo", "bar")' \
+  'match("body.nested.foo", "bar")' \
+  'match("body.nested", { "id": 42, "foo": "bar" })' \
+  'match("body.id", /^\d{2}$/)' 

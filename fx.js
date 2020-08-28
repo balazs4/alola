@@ -52,34 +52,33 @@ module.exports = (global) => {
       }
     };
 
-    global.status = (expected) => {
-      return test(`status code should be ${expected}`, (json) =>
-        assert.equal(parseInt(json.status), parseInt(expected)));
-    };
-
-    global.header = (key, expected) => {
-      return test(`header['${key}'] should be ${JSON.stringify(
-        expected
-      )}`, (json) => assert.deepEqual(json.headers[key], expected));
-    };
-
-    global.body = (key, expected) => {
+    global.match = (key, expected) => {
       if (typeof expected.test === typeof Function) {
-        return test(`body.${key} should match the regex ${expected.toString()}`, (json) => {
-          const actual = delosslessify(find(key, json.body));
-          return assert.equal(
+        return test(`${key} should ${
+          expected.verb || 'match the regular expression'
+        } ${expected.toString()}`, (json) => {
+          const actual = delosslessify(find(key, json));
+          return assert.deepEqual(
             expected.test(actual),
             true,
             `${actual} does not match the regular expression ${expected.toString()}`
           );
         });
       }
-      return test(`body.${key} should be ${JSON.stringify(
-        expected
-      )}`, (json) => {
-        const actual = delosslessify(find(key, json.body));
+      return test(`${key} should be ${JSON.stringify(expected)}`, (json) => {
+        const actual = delosslessify(find(key, json));
         return assert.deepEqual(actual, expected);
       });
+    };
+
+    global.status = (input) => {
+      if ('2xx' === input)
+        return {
+          test: (_) => /^2\d\d/.test(_),
+          toString: () => input,
+          verb: 'be like',
+        };
+      return input;
     };
 
     return json;
