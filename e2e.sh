@@ -14,7 +14,7 @@ PORT=9000
 Content-Type: application/json; charset=utf-8
 X-Powered-By: Express
 
-{ "id": 42, "foo": "bar", "nested": { "id": 42, "foo": "bar" }}' | nc -c -l -p ${PORT} &)
+{ "id": 42, "foo": "bar", "nested": { "id": 42, "foo": "bar" }}' | nc -l -p ${PORT} &)
 
 curl -Lis http://localhost:${PORT} \
  | alola \
