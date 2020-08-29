@@ -1,4 +1,4 @@
-module.exports = (global) => {
+module.exports = (fx) => {
   const assert = require('assert').strict;
   const results = [];
 
@@ -17,7 +17,7 @@ module.exports = (global) => {
     );
   };
 
-  global.alola = (options) => (json) => {
+  fx.alola = (options) => (json) => {
     process.on('beforeExit', (code) => {
       const failed = results.filter((x) => x.err !== undefined).length;
       const passed = results.filter((x) => x.err === undefined).length;
@@ -49,7 +49,7 @@ module.exports = (global) => {
       }
     };
 
-    global.expect = (key, expected) => {
+    fx.expect = (key, expected) => {
       if (typeof expected.test === typeof Function) {
         return test(`${key} should match the regular expression ${expected.toString()}`, (json, assert) => {
           const actual = delosslessify(find(key, json));
@@ -68,7 +68,7 @@ module.exports = (global) => {
       });
     };
 
-    global.unexpect = (key, expected) => {
+    fx.unexpect = (key, expected) => {
       if (typeof expected.test === typeof Function) {
         return test(`${key} should not match the regular expression ${expected.toString()}`, (json, assert) => {
           const actual = delosslessify(find(key, json));
@@ -87,7 +87,7 @@ module.exports = (global) => {
       });
     };
 
-    global.custom = (name, assertion) => {
+    fx.custom = (name, assertion) => {
       return test(name, assertion);
     };
 
