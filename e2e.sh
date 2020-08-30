@@ -8,6 +8,7 @@
 # npm i -g fx@latest
 # patch ~/.fxrc 
 
+set -e 
 PORT=9000
 
 function netcat(){
