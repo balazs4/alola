@@ -13,7 +13,7 @@ PORT=9000
 
 function netcat(){
   if [ $CI = 'true' ]
-    then nc -N -l $1 > /dev/null; sleep 4s;  # sleep because github actions is not blazing-fast
+    then nc -N -l $1 > /dev/null
     else nc -c -l -p $1 > /dev/null
   fi
 }
@@ -23,6 +23,8 @@ Content-Type: application/json; charset=utf-8
 X-Powered-By: Express
 
 { "id": 42, "foo": "bar", "nested": { "id": 42, "foo": "bar" }}' | netcat ${PORT} &)
+
+[ $CI = 'true' ] && sleep 4s
 
 curl -Lis http://localhost:${PORT} \
  | alola \
