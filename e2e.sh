@@ -22,7 +22,8 @@ function netcat(){
 Content-Type: application/json; charset=utf-8
 X-Powered-By: Express
 
-{ "id": 42, "foo": "bar", "nested": { "id": 42, "foo": "bar" }}' | netcat ${PORT} &)
+{ "id": 42, "foo": "bar", "nested": { "id": 42, "foo": "bar" }, "tags": ["awesome", "cool"]}
+' | netcat ${PORT} &)
 
 [ $CI = 'true' ] && sleep 4s
 
@@ -37,6 +38,7 @@ curl -Lis http://localhost:${PORT} \
    'expect("body.id", 42)' \
    'expect("body.id", /^\d{2}$/)' \
    'expect("body.foo", "bar")' \
+   'expect("body.tags.0", "awesome")' \
    'expect("body.nested.foo", "bar")' \
    'expect("body.nested", { "id": 42, "foo": "bar" })' \
    'custom("I do it better", (json, assert) => assert.ok(true))'
