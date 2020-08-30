@@ -24,6 +24,8 @@ X-Powered-By: Express
 
 { "id": 42, "foo": "bar", "nested": { "id": 42, "foo": "bar" }}' | netcat ${PORT} &)
 
+[ $CI ] && sleep 4s
+
 curl -Lis http://localhost:${PORT} 
 # curl -Lis http://localhost:${PORT} \
 #  | alola \
