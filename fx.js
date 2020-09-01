@@ -1,4 +1,4 @@
-module.exports = (fx) => {
+module.exports = (fxglobal) => {
   const assert = require('assert').strict;
   const results = [];
 
@@ -10,14 +10,16 @@ module.exports = (fx) => {
   };
 
   const delosslessify = (tmp) => {
-    return JSON.parse(
-      JSON.stringify(tmp, (_, value) => {
-        return value && value.valueOf ? value.valueOf() : value;
-      })
-    );
+    return tmp === undefined
+      ? undefined
+      : JSON.parse(
+          JSON.stringify(tmp, (_, value) => {
+            return value && value.valueOf ? value.valueOf() : value;
+          })
+        );
   };
 
-  fx.alola = (options) => (json) => {
+  fxglobal.alola = (options) => (json) => {
     process.on('beforeExit', (code) => {
       const failed = results.filter((x) => x.err !== undefined).length;
       const passed = results.filter((x) => x.err === undefined).length;
@@ -49,7 +51,7 @@ module.exports = (fx) => {
       }
     };
 
-    fx.expect = (key, expected) => {
+    fxglobal.expect = (key, expected) => {
       if (typeof expected.test === typeof Function) {
         return test(`${key} should match the regular expression ${expected.toString()}`, (json, assert) => {
           const actual = delosslessify(find(key, json));
@@ -68,7 +70,7 @@ module.exports = (fx) => {
       });
     };
 
-    fx.unexpect = (key, expected) => {
+    fxglobal.unexpect = (key, expected) => {
       if (typeof expected.test === typeof Function) {
         return test(`${key} should not match the regular expression ${expected.toString()}`, (json, assert) => {
           const actual = delosslessify(find(key, json));
@@ -87,7 +89,7 @@ module.exports = (fx) => {
       });
     };
 
-    fx.custom = (name, assertion) => {
+    fxglobal.custom = (name, assertion) => {
       return test(name, assertion);
     };
 
