@@ -1,0 +1,6 @@
+// vim: ft=javascript
+
+global.alola = require(`alola/fx`)({
+  'alola is (fantastic|awesome)': (json, key)=> { require('assert').ok(true); }
+});
+

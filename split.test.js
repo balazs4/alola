@@ -2,7 +2,7 @@ const assert = require('assert');
 const split = require('./split');
 
 module.exports = (test) => {
-  test('split > 1 response without body (aka headers only)', (t) => {
+  test('split > 1 response without body (aka headers only)', () => {
     const input = [
       'HTTP/2 200 OK',
       'Server: dummy',
@@ -24,7 +24,7 @@ module.exports = (test) => {
     assert.deepEqual(actual, expected);
   });
 
-  test('split > 1 response with body', (t) => {
+  test('split > 1 response with body', () => {
     const input = [
       'HTTP/2 200 OK',
       'Server: dummy',
@@ -49,7 +49,7 @@ module.exports = (test) => {
     assert.deepEqual(actual, expected);
   });
 
-  test('split > 2 responses with body', (t) => {
+  test('split > 2 responses with body', () => {
     const input = [
       'HTTP/1.1 301',
       'Location: http://newurl.com/',
@@ -78,7 +78,7 @@ module.exports = (test) => {
     assert.deepEqual(actual, expected);
   });
 
-  test('split > 3 responses with body', (t) => {
+  test('split > 3 responses with body', () => {
     const input = [
       'HTTP/1.1 301',
       'Location: http://newurl.com/',
