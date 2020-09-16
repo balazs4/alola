@@ -27,7 +27,7 @@ const jsonOrNull = (text) => {
   try {
     return JSON.parse(text);
   } catch (e) {
-    return null;
+    return text;
   }
 };
 
