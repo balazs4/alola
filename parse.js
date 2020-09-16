@@ -1,4 +1,4 @@
-module.exports = block => {
+module.exports = (block) => {
   const result = block.reduce((res, chunk) => {
     if (/^HTTP\/\d/.test(chunk)) {
       return { ...res, ...statusObject(chunk) };
@@ -23,7 +23,7 @@ module.exports = block => {
   return result;
 };
 
-const jsonOrNull = text => {
+const jsonOrNull = (text) => {
   try {
     return JSON.parse(text);
   } catch (e) {
@@ -31,16 +31,16 @@ const jsonOrNull = text => {
   }
 };
 
-const statusObject = rawstatus => {
+const statusObject = (rawstatus) => {
   const [protocol, statuscode, ...statustexts] = rawstatus.split(' ');
   return {
     protocol,
     status: parseInt(statuscode),
-    statusText: statustexts.join(' ')
+    statusText: statustexts.join(' '),
   };
 };
 
-const header = rawheader => {
+const header = (rawheader) => {
   const [key = '', ...values] = rawheader.split(':');
   if (key === '') return {};
   const value = values.join(':');

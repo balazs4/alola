@@ -1,4 +1,4 @@
-module.exports = lines => {
+module.exports = (lines) => {
   const blocks = lines
     .reduce((acc, line) => {
       if (/^HTTP\/\d/.test(line)) {
@@ -10,7 +10,7 @@ module.exports = lines => {
       acc[acc.length - 1].push(line);
       return acc;
     }, [])
-    .map(block => {
+    .map((block) => {
       const lastindex = block.length - 1;
       return block.filter((chunk, index) => {
         return index === lastindex && chunk === '' ? false : true;
