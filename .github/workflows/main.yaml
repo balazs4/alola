@@ -21,11 +21,10 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm link --only=production # equvivalent with npm install --global alola
-      - run: npm install --global fx && cp .fxrc ~/
       - run: npm run e2e
         env:
           CI: true
-          ALOLA_FX_REPORTER: text
+          ALOLA_REPORTER: text
 
   release:
     if: github.ref == 'refs/heads/master'

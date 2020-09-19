@@ -4,9 +4,17 @@ const read = require('./read');
 const split = require('./split');
 const parse = require('./parse');
 const finalize = require('./finalize');
+const check = require('./check');
 
+const write = (json) => {
+  console.log(JSON.stringify(json, null, 2));
+  return json;
+};
+
+const [, , ...assertions] = process.argv;
 read()
   .then((lines) => split(lines))
   .then((blocks) => blocks.map((block) => parse(block)))
   .then((parsedblocks) => finalize(parsedblocks))
-  .then((result) => console.log(JSON.stringify(result, null, 2)));
+  .then((json) => write(json))
+  .then((json) => check(json, assertions));

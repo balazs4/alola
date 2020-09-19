@@ -6,20 +6,24 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![alola](https://img.shields.io/npm/v/alola?logo=node.js)](https://www.npmjs.com/package/alola)
 
-> your **next** 2-in-1 tool for JSON API
+> 2-in-1 cli tool for JSON API
 
 ![.asset/alola.png](.asset/alola.png)
-![.asset/alola-fx.png](.asset/alola-fx.png)
+![.asset/alola-qa.png](.asset/alola-qa.png)
 
 ## Features
 
 - converts `curl -Lis` output into JSON (`protocol`, `status`, `statusText`, `headers`, `body`, and `redirects`)
-- extends [fx](https://github.com/antonmedv/fx) and turns it into a [test-runner](#advanced-usage) with 'battery-included' checks
+- test-runner with 'battery-included' assertions
 
 ## Install
 
 ```bash
 npm install -g alola
+
+# or even better
+
+npx alola
 ```
 
 ## Usage
@@ -75,35 +79,17 @@ curl -Lis http://dummy.restapiexample.com/api/v1/employee/1 | npx alola
 
 ## Advanced usage
 
-`alola` comes with an `fx` extension in order to make some checks on your json.
-
-### Features
+`alola` comes with assertion capability in order to make some checks on json.
 
 - reports the result with details
 - no bail-out; it runs every assertions
 - CI-friendly: process exit code is always the number of failed testcases
-
-### Prerequisites
-
-- install [fx](https://github.com/antonmedv/fx#install)
-- add the following content to your [~/.fxrc](https://github.com/antonmedv/fx/blob/master/DOCS.md#using-fxrc)
-
-  ```javascript
-  global.alola = require(`alola/fx`)();
-  ```
-
-- to be able require global modules make sure you have correct `NODE_PATH` env variable.
-
-  ```bash
-  export NODE_PATH=`npm root -g`
-  ```
 
 ### Example
 
 ```bash
 curl -Lis http://dummy.restapiexample.com/api/v1/employee/1 \
   | alola \
-  | FX_APPLY=alola fx \
     'status should not be 404' \
     'headers.content-type should match json' \
     'body.status should be success' \
@@ -111,15 +97,12 @@ curl -Lis http://dummy.restapiexample.com/api/v1/employee/1 \
 
 Another example see [e2e.sh](./e2e.sh)
 
-> :bulb: You can define an alias for that in your shellrc (e.g. zshrc or bashrc)
-> `alias alola-fx='FX_APPLY=alola fx'`
-
 ### API
 
-`alola fx` offers a high-level api for assertions using 'human-language' to make checks easy to read and write. It means instead of writing functions, you literally write down your expectation.
+`alola` offers a high-level api for assertions using 'human-language' to make checks easy to read and write. It means instead of writing functions, you literally write down your expectation.
 In most cases you do not have worry about the quotes or escaping issues.
 
-#### Anatomy of an alola fx assertion
+#### Anatomy of an alola assertion
 
 ```
 <key> <verb> <expectation>
@@ -153,11 +136,12 @@ In most cases you do not have worry about the quotes or escaping issues.
 #### Bring your own assertions
 
 In some case you might want to define your own assertions.
-The only thing you have to do is add an `object` as a function parameter to the `alola/fx`.
+The only thing you have to do: create an `.alola.js` file in your project directory and export an object with the following structure:
 
 ```javascript
-// .fxrc
-global.alola = require('alola/fx')({
+// .alola.js
+
+module.exports = {
   'status is ok-ish': (json, assertion) => {
     const status = json.status.valueOf();
     if (status >= 200 && status < 300) return;
@@ -171,13 +155,14 @@ global.alola = require('alola/fx')({
     console.log({ json, assertion, regex }); // inspect the paramters
     return;
   },
-});
+};
 ```
+
+Example: \
 
 ```bash
 curl -Lis http://dummy.restapiexample.com/api/v1/employee/1 \
   | alola \
-  | FX_APPLY=alola fx \
     'status should not be 404' \
     'status is ok-ish' \
     'this is an optimistic check' \
@@ -189,7 +174,7 @@ curl -Lis http://dummy.restapiexample.com/api/v1/employee/1 \
 The keys of this object are your own custom assertions, and it should implement a function.
 This assertion function get 2 parameters:
 
-- the raw `json` itself as it would be just an `fx` call
+- the `json` itself
 - the `assertion` which triggered this execution
 
 If the custom assertion contains any regex, a third parameter will be passed to the function, which contains a `pattern` and a `match` key-value.
@@ -201,9 +186,14 @@ If the custom assertion contains any regex, a third parameter will be passed to 
 
 You can configure the `alola` function with environment variables
 
-| Environment variable | Description     | Default value | Possible values  |
-| -------------------- | --------------- | ------------- | ---------------- |
-| `ALOLA_FX_REPORTER`  | result reporter | text          | text,json,silent |
+| Environment variable | Description                                  | Default value | Possible values  |
+| -------------------- | -------------------------------------------- | ------------- | ---------------- |
+| `ALOLA_REPORTER`     | result reporter                              | text          | text,json,silent |
+| `ALOLA_CUSTOM`       | any resolvable path to the custom assertions | ./.alola.js   |                  |
+
+## Related projects
+
+- [fx](https://github.com/antonmedv/fx)
 
 ## Author
 

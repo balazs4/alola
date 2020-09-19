@@ -11,7 +11,7 @@
   },
   "homepage": "https://github.com/balazs4/alola#readme",
   "version": "0.0.0-semantic-release",
-  "description": "turns `curl -Lis` output into JSON",
+  "description": "2-in-1 cli tool for JSON API",
   "keywords": [
     "curl",
     "json",
@@ -23,9 +23,7 @@
     "test",
     "api",
     "assert",
-    "regex",
-    "fx",
-    "extension"
+    "regex"
   ],
   "bin": {
     "alola": "./index.js"

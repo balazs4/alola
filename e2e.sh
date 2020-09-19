@@ -11,11 +11,8 @@ X-Powered-By: Express
 { "id": 42, "foo": "bar", "nested": { "id": 42, "foo": "bar" }, "tags": ["awesome", "cool"], "whatif": "should be"}'
 }
 
-export NODE_PATH=`npm root -g`
-
 fakecurl -Lis http://localhost:4242 \
  | alola \
- | FX_APPLY=alola fx \
   'headers.content-type should match json' \
   'headers.x-powered-by should be Express' \
   'status should be 200' \
