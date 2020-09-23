@@ -16,14 +16,6 @@ const report = (tests) => {
   const failed = tests.filter((t) => t.conclusion === 'failed').length;
 
   if (process.env.ALOLA_REPORT === 'silent') {
-    tests
-      .filter((t) => t.conclusion === 'failed')
-      .forEach((t) => {
-        const line = [t.conclusion, t.assertion, t.reason]
-          .filter((x) => x)
-          .join('\t');
-        process.stderr.write(`${line}\n`);
-      });
     return;
   }
 
