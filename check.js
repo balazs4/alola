@@ -127,8 +127,7 @@ const builtin = {
 
 const custom = () => {
   try {
-    const custompath =
-      process.env.ALOLA_CUSTOM || path.resolve(__dirname, '.alola.js');
+    const custompath = process.env.ALOLA_CUSTOM || path.resolve('.alola.js');
     return require(custompath);
   } catch (err) {
     return {};
