@@ -188,7 +188,7 @@ You can configure the `alola` function with environment variables
 
 | Environment variable | Description                                  | Default value | Possible values  |
 | -------------------- | -------------------------------------------- | ------------- | ---------------- |
-| `ALOLA_REPORTER`     | result reporter                              | text          | text,json,silent |
+| `ALOLA_REPORT`       | result reporter                              | text          | text,json,silent |
 | `ALOLA_CUSTOM`       | any resolvable path to the custom assertions | ./.alola.js   |                  |
 
 ## Related projects

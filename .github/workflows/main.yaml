@@ -24,7 +24,7 @@ jobs:
       - run: npm run e2e
         env:
           CI: true
-          ALOLA_REPORTER: text
+          ALOLA_REPORT: text
 
   release:
     if: github.ref == 'refs/heads/master'
