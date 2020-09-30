@@ -1,4 +1,4 @@
-# ᭴lol᭴
+# alola
 
 [![.github/workflows/main.yaml](https://github.com/balazs4/alola/workflows/.github/workflows/main.yaml/badge.svg)](https://github.com/balazs4/alola/actions?query=workflow%3A.github%2Fworkflows%2Fmain.yaml+branch%3Amaster)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/balazs4/alola.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/balazs4/alola/context:javascript)
