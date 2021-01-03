@@ -7,7 +7,7 @@
         "preset": "angular",
         "releaseRules": [
           { "type": "docs", "release": "patch" },
-          { "scope": "chore", "release": false }
+          { "type": "chore", "release": false }
         ]
       }
     ],
