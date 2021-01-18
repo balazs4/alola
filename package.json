@@ -29,7 +29,6 @@
     "alola": "./index.js"
   },
   "devDependencies": {
-    "baretest": "latest",
     "bft": "github:balazs4/bft",
     "c8": "latest",
     "husky": "latest",
