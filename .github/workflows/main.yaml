@@ -9,7 +9,7 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm ci
-      - run: npx c8 --all npm run test ${{ github.ref }}
+      - run: npx c8 --all npm run test
         env:
           CI: true
 
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - run: npm link --only=production # equvivalent with npm install --global alola
+      - run: npm link --only=production
       - run: npm run e2e
         env:
           CI: true
