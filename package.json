@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "baretest": "latest",
+    "bft": "github:balazs4/bft",
     "c8": "latest",
     "husky": "latest",
     "onchange": "latest",
@@ -37,7 +38,7 @@
     "pretty-quick": "latest"
   },
   "scripts": {
-    "test": "node index.test.js",
+    "test": "bft *.test.js",
     "e2e": "./e2e.sh",
     "dev": "onchange **/*.{js,sh} -i -k -- npm run -s"
   },
