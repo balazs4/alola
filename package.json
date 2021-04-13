@@ -29,9 +29,9 @@
     "alola": "./index.js"
   },
   "devDependencies": {
-    "bft": "github:balazs4/bft",
-    "c8": "latest",
-    "husky": "latest",
+    "bft": "^1.2.0",
+    "c8": "^7.7.1",
+    "husky": "^6.0.0",
     "onchange": "latest",
     "prettier": "latest",
     "pretty-quick": "latest"
@@ -48,6 +48,5 @@
   },
   "prettier": {
     "singleQuote": true
-  },
-  "dependencies": {}
+  }
 }
