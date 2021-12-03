@@ -7,8 +7,11 @@ const finalize = require('./finalize');
 const check = require('./check');
 
 const write = (json) => {
+  if (process.env.ALOLA_REPORT_ONLY){
+    return json;
+  }
   console.log(JSON.stringify(json, null, 2));
-  return json;
+  return json; 
 };
 
 const [, , ...assertions] = process.argv;
