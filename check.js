@@ -48,7 +48,7 @@ const report = (tests) => {
 
   console.log(' ');
   console.log(
-    `${passed} of ${tests.length} passed (${failed} failed, ${skipped} skipped) /// ᭴lol᭴`
+    `${passed} of ${tests.length} passed (${failed} failed, ${skipped} skipped) /// alola`
   );
 };
 
