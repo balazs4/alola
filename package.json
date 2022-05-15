@@ -11,26 +11,14 @@
   },
   "homepage": "https://github.com/balazs4/alola#readme",
   "version": "0.0.0-semantic-release",
-  "description": "2-in-1 cli tool for JSON API",
-  "keywords": [
-    "curl",
-    "json",
-    "cli",
-    "terminal",
-    "convert",
-    "pipe",
-    "qa",
-    "test",
-    "api",
-    "assert",
-    "regex"
-  ],
+  "description": "curl | alola",
+  "keywords": ["curl", "json", "cli", "test", "api"],
   "bin": {
     "alola": "./index.js"
   },
   "devDependencies": {
-    "bft": "^1.2.0",
-    "c8": "^7.7.1",
+    "bft": "latest",
+    "c8": "latest",
     "onchange": "latest",
     "prettier": "latest"
   },
