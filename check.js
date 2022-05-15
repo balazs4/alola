@@ -56,12 +56,13 @@ const find = (key, json) => {
   if (!key) return undefined;
   if (!json) return undefined;
   return key.split('.').reduce((o, k) => {
-    if (o && o[k]) return o[k];
+    if (o) return o[k];
     return undefined;
   }, json);
 };
 
 const parse = (str) => {
+  if (str === 'undefined') return undefined;
   if (typeof str !== 'string') return str;
   try {
     return JSON.parse(str);
