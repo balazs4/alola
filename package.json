@@ -31,20 +31,13 @@
   "devDependencies": {
     "bft": "^1.2.0",
     "c8": "^7.7.1",
-    "husky": "^6.0.0",
     "onchange": "latest",
-    "prettier": "latest",
-    "pretty-quick": "latest"
+    "prettier": "latest"
   },
   "scripts": {
     "test": "bft *.test.js",
     "e2e": "./e2e.sh",
-    "dev": "onchange **/*.{js,sh} -i -k -- npm run -s"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
+    "watch": "onchange **/*.{js,sh} -i -k -- npm run -s"
   },
   "prettier": {
     "singleQuote": true
