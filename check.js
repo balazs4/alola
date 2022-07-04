@@ -16,28 +16,41 @@ const report = (tests) => {
   const failed = tests.filter((t) => t.conclusion === 'failed').length;
 
   if (process.env.ALOLA_REPORT === 'json') {
-    process.stderr.write(JSON.stringify(tests) + "\n");
+    process.stderr.write(JSON.stringify(tests) + '\n');
     return;
   }
 
-  const color = (conclusion) => (txt) => {
-    if (conclusion === 'passed') return `\u001b[32m${txt}\u001b[39m`;
-    if (conclusion === 'failed')
-      return `\u001b[41m\u001b[97m${txt}\u001b[39m\u001b[49m`;
-    if (conclusion === 'skipped') return `\u001b[93m${txt}\u001b[39m`;
-    return txt;
+  const redgreenyellow = (txt) => {
+    return process.stdout.hasColors && process.stdout.hasColors() === true
+      ? txt
+          .replace(/^PASSED/, '\x1b[32mPASSED\x1b[0m')
+          .replace(/^FAILED/, '\x1b[31mFAILED\x1b[0m')
+          .replace(/^SKIPPED/, '\x1b[33mSKIPPED\x1b[0m')
+      : txt;
+  };
+
+  const gray = (txt) => {
+    return process.stdout.hasColors && process.stdout.hasColors() === true
+      ? `\x1b[2m${txt}\x1b[0m`
+      : txt;
+  };
+
+  const bold = (txt) => {
+    return process.stdout.hasColors && process.stdout.hasColors() === true
+      ? `\x1b[1m${txt}\x1b[0m`
+      : txt;
   };
 
   tests.forEach((t) => {
-    const c = color(t.conclusion);
     const line = [
-      c(t.conclusion),
-      t.conclusion === 'failed' ? '<-o-<' : '>-o->',
-      t.assertion,
-      t.reason,
+      redgreenyellow(t.conclusion.toUpperCase()),
+      t.conclusion === 'failed' ? bold(' vvv ') : gray(' >>> '),
+      t.conclusion === 'failed' ? bold(t.assertion) : t.assertion,
+      t.reason ? `\n${bold(t.reason)}` : null,
     ]
       .filter((x) => x)
       .join('\t');
+
     process.stderr.write(`${line}\n`);
   });
 
@@ -128,7 +141,6 @@ const verify = (json) => (assertion) => {
     return {
       conclusion: 'skipped',
       assertion,
-      reason: 'unknown assertion',
     };
   }
 

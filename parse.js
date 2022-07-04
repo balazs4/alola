@@ -15,7 +15,7 @@ module.exports = (block) => {
 
   result['body'] =
     result.rawbody && result.rawbody.join
-      ? jsonOrNull(result.rawbody.join(''))
+      ? jsonOrShitInShitOut(result.rawbody.join(''))
       : null;
 
   delete result.rawbody;
@@ -23,10 +23,10 @@ module.exports = (block) => {
   return result;
 };
 
-const jsonOrNull = (text) => {
+const jsonOrShitInShitOut = (text) => {
   try {
     return JSON.parse(text);
-  } catch (e) {
+  } catch (_) {
     return text;
   }
 };
