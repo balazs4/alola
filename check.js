@@ -15,12 +15,8 @@ const report = (tests) => {
   const skipped = tests.filter((t) => t.conclusion === 'skipped').length;
   const failed = tests.filter((t) => t.conclusion === 'failed').length;
 
-  if (process.env.ALOLA_REPORT === 'silent') {
-    return;
-  }
-
   if (process.env.ALOLA_REPORT === 'json') {
-    console.log(JSON.stringify(tests));
+    process.stderr.write(JSON.stringify(tests) + "\n");
     return;
   }
 
@@ -32,7 +28,6 @@ const report = (tests) => {
     return txt;
   };
 
-  console.log(' ');
   tests.forEach((t) => {
     const c = color(t.conclusion);
     const line = [
@@ -43,12 +38,11 @@ const report = (tests) => {
     ]
       .filter((x) => x)
       .join('\t');
-    process.stdout.write(`${line}\n`);
+    process.stderr.write(`${line}\n`);
   });
 
-  console.log(' ');
-  console.log(
-    `${passed} of ${tests.length} passed (${failed} failed, ${skipped} skipped) /// alola`
+  process.stderr.write(
+    `${passed} of ${tests.length} passed (${failed} failed, ${skipped} skipped) /// alola\n`
   );
 };
 

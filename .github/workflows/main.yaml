@@ -24,8 +24,6 @@ jobs:
       - run: npm run e2e
         env:
           CI: true
-          ALOLA_REPORT: text
-          ALOLA_REPORT_ONLY: true
 
   release:
     needs: [test, e2e]
