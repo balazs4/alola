@@ -1,10 +1,7 @@
+
 # alola
 
-> api test tool
-
-[![.github/workflows/main.yaml](https://github.com/balazs4/alola/workflows/.github/workflows/main.yaml/badge.svg)](https://github.com/balazs4/alola/actions?query=workflow%3A.github%2Fworkflows%2Fmain.yaml+branch%3Amaster)
-[![alola](https://img.shields.io/npm/v/alola?logo=node.js)](https://www.npmjs.com/package/alola)
-
+> api test tool 
 
 ## facts
 
@@ -42,6 +39,11 @@ curl -i https://alola-vercel.vercel.app/api/foo | npx alola 'status should be 20
 
 # json assertion output
 curl -i https://alola-vercel.vercel.app/api/foo | ALOLA_REPORT=json npx alola 'status should be 200' 1>/dev/null
+
+# middleware
+curl -i https://alola-vercel.vercel.app/api/foo \
+  | npx alola 'status should be 200' 'headers.content-type should match json' \
+  | npx fx 'res => "Hello, " + res.body.name'
 ```
 
 ### configuration
@@ -60,3 +62,5 @@ You can configure `alola` with the following environment variables:
 ## author
 
 balazs4 - https://twitter.com/balazs4
+
+[![.github/workflows/main.yaml](https://github.com/balazs4/alola/workflows/.github/workflows/main.yaml/badge.svg)](https://github.com/balazs4/alola/actions?query=workflow%3A.github%2Fworkflows%2Fmain.yaml+branch%3Amaster) [![alola](https://img.shields.io/npm/v/alola?logo=node.js)](https://www.npmjs.com/package/alola)
