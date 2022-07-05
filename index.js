@@ -11,8 +11,6 @@ const [, , ...assertions] = process.argv;
 read().then((lines) => {
   const blocks = split(lines).map((block) => parse(block));
   const json = finalize(blocks);
-  if (process.env.ALOLA_REPORT_ONLY === undefined) {
-    console.log(JSON.stringify(json, null, 2));
-  }
+  process.stdout.write(JSON.stringify(json, null, 2) + '\n');
   check(json, assertions);
 });
