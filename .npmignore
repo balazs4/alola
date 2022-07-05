@@ -1,4 +1,5 @@
 .github
+.aws
 *.test.js
 .releaserc*
 e2e.sh
