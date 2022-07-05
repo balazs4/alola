@@ -1,5 +1,5 @@
 .github
-.aws
+.template.yaml
 *.test.js
 .releaserc*
 e2e.sh

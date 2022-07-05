@@ -14,3 +14,8 @@ Resources:
 Outputs:
   DemoFunctionUrl:
     Value: !GetAtt 'DemoFunctionUrl.FunctionUrl'
+
+# commands
+# aws cloudformation deploy --capabilities CAPABILITY_IAM --template .template.yaml --stack-name alola
+# aws cloudformation describe-stacks --query "Stacks[].Outputs[?OutputKey=='DemoFunctionUrl'].OutputValue" --stack-name alola --output text
+# aws cloudformation delete-stack --stack-name alola && aws cloudformation wait stack-delete-complete --stack-name alola
