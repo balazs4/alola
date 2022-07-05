@@ -55,7 +55,7 @@ const report = (tests) => {
   });
 
   process.stderr.write(
-    `${passed} of ${tests.length} passed (${failed} failed, ${skipped} skipped) /// alola\n`
+    `${passed} of ${tests.length} passed (${failed} failed, ${skipped} skipped) /// alola\n\n`
   );
 };
 
