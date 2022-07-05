@@ -29,7 +29,7 @@ curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/
 curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ --follow | npx alola
 
 # assertion
-curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ | npx alola 'status should be 200' 'headers.content-type should match json' 'body.name should be friend'
+curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ | npx alola 'status should be 200' 'headers.content-type should match json' 'body.author should be balazs4'
 
 # silent assertion
 curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ | npx alola 'status should be 200' 2>/dev/null
@@ -43,7 +43,7 @@ curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/
 # middleware
 curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ \
   | npx alola 'status should be 200' 'headers.content-type should match json' \
-  | npx fx 'res => "Hello, " + res.body.name'
+  | npx fx 'res => res.body.name + " by " + res.body.author'
 ```
 
 ### configuration
