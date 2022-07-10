@@ -74,7 +74,7 @@ const parse = (str) => {
   try {
     return JSON.parse(str);
   } catch (err) {
-    return JSON.stringify(str);
+    return str;
   }
 };
 
