@@ -1,6 +1,12 @@
-[![.github/workflows/main.yaml](https://github.com/balazs4/alola/workflows/.github/workflows/main.yaml/badge.svg)](https://github.com/balazs4/alola/actions?query=workflow%3A.github%2Fworkflows%2Fmain.yaml+branch%3Amaster) [![alola](https://img.shields.io/npm/v/alola?logo=node.js)](https://www.npmjs.com/package/alola)
+<div align="center">
+<img src=".logo.svg" alt="pipe alola pipe">
 
-<p style="text-align:center"><img src=".logo.svg" alt="pipe alola pipe"><p>
+[![npm version: alola](https://img.shields.io/npm/v/alola?color=010101&logo=npm)](https://www.npmjs.com/package/alola)
+[![zero dependencies](https://img.shields.io/badge/dependencies-zero-010101?logo=npm)](https://www.npmjs.com/package/alola)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-010101.svg?logo=prettier)](https://github.com/prettier/prettier)
+[![.github/workflows/main.yaml](https://github.com/balazs4/alola/workflows/.github/workflows/main.yaml/badge.svg)](https://github.com/balazs4/alola/actions?query=workflow%3A.github%2Fworkflows%2Fmain.yaml+branch%3Amaster) 
+
+</div>
 
 # alola
 
@@ -8,6 +14,7 @@
 
 - glue beetween `curl -i` and any JSON parser tool like `fx` or `jq`
 - it was built with unix-philosophy in the mind
+- runs assertions on JSON
 - no bail-out; it runs every assertions
 - CI-friendly: process exit code is always the number of failed testcases
 
@@ -25,8 +32,35 @@ curl -i <url> | npx alola [assertions]
 
 ```bash
 # basic
+
 curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ | npx alola
 
+# output
+
+{
+  "redirects": [],
+  "protocol": "HTTP/1.1",
+  "status": 200,
+  "statusText": "OK",
+  "headers": {
+    "date": "Sun, 10 Jul 2022 08:30:19 GMT",
+    "content-type": "application/json",
+    "content-length": "68",
+    "connection": "keep-alive",
+    "x-amzn-requestid": "6f38be71-8c2a-4106-8bd5-6a2a0726d831",
+    "x-amzn-trace-id": "root=1-62ca8e1b-3fa47e01777132441c03e3de;sampled=0"
+  },
+  "body": {
+    "date": 1657441819664,
+    "foobar": 42,
+    "author": "balazs4",
+    "name": "alola"
+  }
+}
+```
+
+
+```bash
 # follows redirections
 curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ --follow | npx alola
 
