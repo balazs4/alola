@@ -1,5 +1,6 @@
 <div align="center">
-<img src=".logo.svg" alt="pipe alola pipe">
+<img src=".logo-gh-light-mode-only.svg#gh-light-mode-only" alt="pipe alola pipe">
+<img src=".logo-gh-dark-mode-only.svg#gh-dark-mode-only" alt="pipe alola pipe">
 
 [![npm version: alola](https://img.shields.io/npm/v/alola?color=010101&logo=npm)](https://www.npmjs.com/package/alola)
 [![zero dependencies](https://img.shields.io/badge/dependencies-zero-010101?logo=npm)](https://www.npmjs.com/package/alola)
