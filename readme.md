@@ -1,13 +1,10 @@
+<p style="text-align:center"><img src=".logo.svg" alt="pipe alola pipe"><p>
+
 # alola
 
-> api test tool
-
-## facts
+> `curl -i <api> | alola <assertions> | fx .`
 
 - glue beetween `curl` and any JSON parser tool like `fx` or `jq`
-
-  `curl -i <api> | alola <assertions> | jq .`
-
 - it was built with unix-philosophy in the mind
 - no bail-out; it runs every assertions
 - CI-friendly: process exit code is always the number of failed testcases
