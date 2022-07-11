@@ -29,8 +29,6 @@ curl -i <url> | npx alola [assertions]
 ## examples
 
 ```bash
-# basic
-
 curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ | npx alola
 
 # output
