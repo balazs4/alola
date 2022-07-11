@@ -64,7 +64,10 @@ curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/
 
 # assertion
 curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ \
-  | npx alola 'status should be 200' 'headers.content-type should match json' 'body.author should be balazs4'
+  | npx alola \
+   'status should be 200' \
+   'headers.content-type should match json'\
+   'body.author should be balazs4'
 
 # silent assertion
 curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ \
