@@ -44,7 +44,7 @@ const report = (tests) => {
   tests.forEach((t) => {
     const line = [
       redgreenyellow(t.conclusion.toUpperCase()),
-      t.conclusion === 'failed' ? bold(' vvv ') : gray(' >>> '),
+      t.conclusion === 'failed' ? gray(' vvv ') : gray(' >>> '),
       t.conclusion === 'failed' ? bold(t.assertion) : t.assertion,
       t.reason ? `\n${bold(t.reason)}` : null,
     ]
