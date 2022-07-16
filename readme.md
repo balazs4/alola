@@ -1,4 +1,4 @@
-<p style="text-align:center">
+<p align="center">
 <img src=".logo-gh-light-mode-only.svg#gh-light-mode-only" alt="pipe alola pipe">
 <img src=".logo-gh-dark-mode-only.svg#gh-dark-mode-only" alt="pipe alola pipe">
 </p>
@@ -29,7 +29,8 @@ curl -i <url> | npx alola [assertions]
 ## examples
 
 ```bash
-curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ | npx alola
+curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ \
+  | npx alola
 
 # output
 
