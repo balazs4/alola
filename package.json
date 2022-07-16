@@ -17,13 +17,12 @@
     "alola": "./index.js"
   },
   "devDependencies": {
-    "bft": "latest",
     "c8": "latest",
     "onchange": "latest",
     "prettier": "latest"
   },
   "scripts": {
-    "test": "bft *.test.js",
+    "test": "node --test",
     "e2e": "./e2e.sh",
     "watch": "onchange **/*.{js,sh} -i -k -- npm run -s"
   },
