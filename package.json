@@ -11,20 +11,23 @@
   },
   "homepage": "https://github.com/balazs4/alola#readme",
   "version": "0.0.0-semantic-release",
-  "description": "curl | alola",
-  "keywords": ["curl", "json", "cli", "test", "api"],
+  "description": "curl -i | alola",
+  "keywords": [
+    "curl",
+    "json",
+    "cli",
+    "test",
+    "api"
+  ],
   "bin": {
     "alola": "./index.js"
   },
   "devDependencies": {
-    "c8": "latest",
-    "onchange": "latest",
-    "prettier": "latest"
+    "c8": "7.11.3",
+    "prettier": "2.7.1"
   },
   "scripts": {
-    "test": "node --test",
-    "e2e": "./e2e.sh",
-    "watch": "onchange **/*.{js,sh} -i -k -- npm run -s"
+    "test": "node --test"
   },
   "prettier": {
     "singleQuote": true
