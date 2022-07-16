@@ -1,4 +1,4 @@
-<div align="center">
+<div style="text-align:center">
 <img src=".logo-gh-light-mode-only.svg#gh-light-mode-only" alt="pipe alola pipe">
 <img src=".logo-gh-dark-mode-only.svg#gh-dark-mode-only" alt="pipe alola pipe">
 </div>
