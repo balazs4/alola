@@ -1,7 +1,7 @@
-<div align="center">
+<p align="center">
 <img src=".logo-gh-light-mode-only.svg#gh-light-mode-only" alt="pipe alola pipe">
 <img src=".logo-gh-dark-mode-only.svg#gh-dark-mode-only" alt="pipe alola pipe">
-</div>
+</p>
 
 # alola
 
@@ -29,7 +29,8 @@ curl -i <url> | npx alola [assertions]
 ## examples
 
 ```bash
-curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ | npx alola
+curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ \
+  | npx alola
 
 # output
 
@@ -82,7 +83,7 @@ curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/
 # middleware
 curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ \
   | npx alola 'status should be 200' 'headers.content-type should match json' \
-  | npx fx 'res => res.body.name + " by " + res.body.author'
+  | fx 'res => res.body.name + " by " + res.body.author'
 ```
 
 ### configuration
