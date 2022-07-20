@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: 'latest'
       - run: npm link --only=production
       - run: bash e2e.sh
         env:
@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: 'latest'
       - name: npx semantic-release
         run: |
           GIT_BRANCH=`echo ${{ github.ref }} | cut -d"/" -f3`
