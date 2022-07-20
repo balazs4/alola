@@ -83,7 +83,7 @@ curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/
 # middleware
 curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/ \
   | npx alola 'status should be 200' 'headers.content-type should match json' \
-  | npx fx 'res => res.body.name + " by " + res.body.author'
+  | fx 'res => res.body.name + " by " + res.body.author'
 ```
 
 ### configuration
