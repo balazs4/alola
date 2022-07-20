@@ -5,7 +5,7 @@
 
 # alola
 
-[![npm version: alola](https://img.shields.io/npm/v/alola?color=010101&logo=npm)](https://www.npmjs.com/package/alola) [![zero dependencies](https://img.shields.io/badge/dependencies-zero-010101?logo=npm)](https://www.npmjs.com/package/alola) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-010101.svg?logo=prettier)](https://github.com/prettier/prettier) [![.github/workflows/main.yaml](https://github.com/balazs4/alola/workflows/.github/workflows/main.yaml/badge.svg)](https://github.com/balazs4/alola/actions?query=workflow%3A.github%2Fworkflows%2Fmain.yaml+branch%3Amaster)
+[![npm version: alola](https://img.shields.io/npm/v/alola?color=010101&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/alola) [![zero dependencies](https://img.shields.io/badge/dependencies-zero-010101?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/alola) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-010101.svg?logo=prettier&style=for-the-badge)](https://github.com/prettier/prettier) [![.github/workflows/main.yaml](https://github.com/balazs4/alola/workflows/.github/workflows/main.yaml/badge.svg?style=for-the-badge)](https://github.com/balazs4/alola/actions?query=workflow%3A.github%2Fworkflows%2Fmain.yaml+branch%3Amaster)
 
 - glue beetween `curl -i` and cli JSON parser tool of your choice like `jq` or `fx`
 
