@@ -10,7 +10,7 @@
     "url": "https://github.com/balazs4/alola/issues"
   },
   "homepage": "https://github.com/balazs4/alola#readme",
-  "version": "0.0.0-semantic-release",
+  "version": "3.0.1",
   "description": "curl -i | alola",
   "keywords": [
     "curl",
@@ -23,7 +23,6 @@
     "alola": "./index.js"
   },
   "devDependencies": {
-    "c8": "7.11.3",
     "prettier": "2.7.1"
   },
   "scripts": {

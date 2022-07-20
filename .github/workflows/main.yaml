@@ -9,7 +9,7 @@ jobs:
         with:
           node-version: 'latest'
       - run: npm ci
-      - run: npx c8 --all npm run test
+      - run: npx -yq c8 --all npm run test
         env:
           CI: true
 
