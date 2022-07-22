@@ -102,10 +102,10 @@ curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/
 
 You can configure `alola` with the following environment variables:
 
-| Environment variable | Description                                  | Default value | Possible values |
-| -------------------- | -------------------------------------------- | ------------- | --------------- |
-| `ALOLA_REPORT`       | result reporter                              | text          | text,json       |
-| `ALOLA_CUSTOM`       | any resolvable path to the custom assertions | ./.alola.js   |                 |
+| Environment variable | Description                                  | Default value              | Possible values |
+| -------------------- | -------------------------------------------- | -------------------------- | --------------- |
+| `ALOLA_REPORT`       | result reporter                              | text                       | text,json       |
+| `ALOLA_CUSTOM`       | any resolvable path to the custom assertions | [./.alola.js](./.alola.js) |                 |
 
 ## complementary projects
 
