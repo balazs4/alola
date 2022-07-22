@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center" style="align: center">
   <a href="https://github.com/balazs4/alola">
     <img width="340" heigh="70" src=".logo-gh-light-mode-only.svg#gh-light-mode-only" alt="pipe alola pipe">
     <img width="340" heigh="70" src=".logo-gh-dark-mode-only.svg#gh-dark-mode-only" alt="pipe alola pipe">
