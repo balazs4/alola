@@ -1,4 +1,9 @@
-![pipe alola pipe](.logo-gh-light-mode-only.svg#gh-light-mode-only)![pipe alola pipe](.logo-gh-dark-mode-only.svg#gh-dark-mode-only)
+<div align="center">
+  <a href="https://github.com/balazs4/alola">
+    <img src=".logo-gh-light-mode-only.svg#gh-light-mode-only" alt="pipe alola pipe">
+    <img src=".logo-gh-dark-mode-only.svg#gh-dark-mode-only" alt="pipe alola pipe">
+  </a>
+</div>
 
 # alola
 
