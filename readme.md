@@ -111,6 +111,3 @@ You can configure `alola` with the following environment variables:
 
 balazs4 - https://twitter.com/balazs4
 
-## complementary projects
-
-- [fx](https://github.com/antonmedv/fx)
