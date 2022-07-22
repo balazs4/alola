@@ -1,7 +1,4 @@
-<p align="center">
-<img src=".logo-gh-light-mode-only.svg#gh-light-mode-only" alt="pipe alola pipe">
-<img src=".logo-gh-dark-mode-only.svg#gh-dark-mode-only" alt="pipe alola pipe">
-</p>
+![pipe alola pipe](.logo-gh-light-mode-only.svg#gh-light-mode-only)![pipe alola pipe](.logo-gh-dark-mode-only.svg#gh-dark-mode-only)
 
 # alola
 
@@ -87,7 +84,7 @@ curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/
   | fx 'res => res.body.name + " by " + res.body.author'
 ```
 
-### assertions
+## assertions
 
 ```sh
 <key> should be <expected-value>
@@ -98,7 +95,7 @@ curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/
 
 [more details](./e2e.sh)
 
-### configuration
+## configuration
 
 You can configure `alola` with the following environment variables:
 
@@ -107,10 +104,10 @@ You can configure `alola` with the following environment variables:
 | `ALOLA_REPORT`       | result reporter                              | text                       | text,json       |
 | `ALOLA_CUSTOM`       | any resolvable path to the custom assertions | [./.alola.js](./.alola.js) |                 |
 
-## complementary projects
-
-- [fx](https://github.com/antonmedv/fx)
-
 ## author
 
 balazs4 - https://twitter.com/balazs4
+
+## complementary projects
+
+- [fx](https://github.com/antonmedv/fx)
