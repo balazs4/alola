@@ -23,10 +23,10 @@
     "alola": "./index.js"
   },
   "devDependencies": {
-    "c8": "7.11.3",
     "prettier": "2.7.1"
   },
   "scripts": {
+    "fmt": "prettier *.js *.md --`[[ $CI ]] && echo check || echo write`",
     "test": "node --test"
   },
   "prettier": {
