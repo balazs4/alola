@@ -110,4 +110,3 @@ You can configure `alola` with the following environment variables:
 ## author
 
 balazs4 - https://twitter.com/balazs4
-
