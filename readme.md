@@ -5,7 +5,7 @@
 
 # alola
 
-[![npm version: alola](https://img.shields.io/npm/v/alola?color=010101&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/alola) [![zero dependencies](https://img.shields.io/badge/dependencies-zero-010101?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/alola) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-010101.svg?logo=prettier&style=for-the-badge)](https://github.com/prettier/prettier) [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/balazs4/alola/master?label=action&logo=github&style=for-the-badge)](https://github.com/balazs4/alola/actions?query=workflow%3A.github%2Fworkflows%2Fmain.yaml+branch%3Amaster)
+[![npm version: alola](https://img.shields.io/npm/v/alola?color=010101&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/alola) [![zero dependencies](https://img.shields.io/badge/dependencies-zero-010101?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/alola) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-010101.svg?logo=prettier&style=for-the-badge)](https://github.com/prettier/prettier)
 
 ```sh
 curl -i <url> | alola | fx .
@@ -86,6 +86,17 @@ curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/
   | npx alola 'status should be 200' 'headers.content-type should match json' \
   | fx 'res => res.body.name + " by " + res.body.author'
 ```
+
+### assertions
+
+```sh
+<key> should be <expected-value>
+<key> should not be <expected-value>
+<key> should match <expected-regex>
+<key> should not match <expected-regex>
+```
+
+[more details](./e2e.sh)
 
 ### configuration
 
