@@ -96,7 +96,7 @@ curl -i https://ewqfsixnkkhp3syjy65heuhkou0dogwr.lambda-url.eu-central-1.on.aws/
 <key> should not match <expected-regex>
 ```
 
-[more details](./e2e.sh)
+[more details](./.e2e.sh)
 
 ## configuration
 

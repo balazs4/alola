@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 'lts/*'
       - run: npm link --only=production
-      - run: bash e2e.sh
+      - run: bash .e2e.sh
 
   release:
     needs: [test, e2e]
