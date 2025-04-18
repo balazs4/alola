@@ -11,7 +11,7 @@
 curl -i <url> | alola | fx .
 ```
 
-- glue beetween `curl -i` and cli JSON parser tool of your choice like [`jq`](https://github.com/stedolan/jq) or [`fx`](https://github.com/antonmedv/fx)
+- glue between `curl -i` and cli JSON parser tool of your choice like [`jq`](https://github.com/stedolan/jq) or [`fx`](https://github.com/antonmedv/fx)
 - it was built with unix-philosophy in the mind
 - runs assertions on JSON
 - no bail-out: it runs every assertions
